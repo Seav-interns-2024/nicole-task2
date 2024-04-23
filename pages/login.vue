@@ -54,7 +54,7 @@ function submit() {
     </div>
     <div class="flex-1 max-w-md mx-auto">
       <v-card class="rounded-lg mt-16">
-        <h1 class="text-center mt-10 mb-2 text-xl font-sans font-bold uppercase text-[#134087]">Log On</h1>
+        <h1 class="text-center mt-10 mb-2 text-xl font-sans font-bold uppercase text-[#134087]">Log In</h1>
         <v-form v-model="valid">
           <v-container class="space-y-6">
             <v-text-field v-model="form.email" :rules="emailRules" class="text-blue-950" label="Email"
