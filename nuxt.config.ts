@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxtjs/tailwindcss", "vuetify-nuxt-module"],
+  modules: ["@nuxtjs/tailwindcss", "vuetify-nuxt-module", '@pinia/nuxt'],
   vuetify: {
     moduleOptions: {
       /* module specific options */

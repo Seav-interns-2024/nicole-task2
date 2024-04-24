@@ -18,7 +18,7 @@
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" :location="$vuetify.display.mobile ? 'bottom' : 'right'" temporary>
           <a href="#" class="font-sans font-bold text-[#294278] text-sm uppercase">
-            <div class="pt-3 space-y-3">
+            <div class="mt-3 space-y-3">
               <v-list-item link>About</v-list-item>
               <v-list-item link>Registration</v-list-item>
               <v-list-item link>Use Cases</v-list-item>

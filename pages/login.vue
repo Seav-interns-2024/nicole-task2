@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { userLogInStore } from '@/store/login.js'
 
-const valid = ref(false);
-const form = ref({
-  email: '',
-  password: '',
-  remember: false
-});
+const logIn = userLogInStore()
+const email = ref('');
+const password = ref('');
+const remember = ref(false);
 
 const emailRules = [
   (value: string) => {
@@ -19,14 +18,12 @@ const emailRules = [
   },
 ];
 
-function submit() {
-  console.log('Form submitted!');
-  console.log(form.value)
+function login() {
+  logIn.email = email.value
+  logIn.password = password.value
 
-  //clear cell
-  form.value.email = '',
-    form.value.password = ''
-  form.value.remember = false
+  email.value = ''
+  password.value = ''
 }
 </script>
 
@@ -55,19 +52,18 @@ function submit() {
     <div class="flex-1 max-w-md mx-auto">
       <v-card class="rounded-lg mt-16">
         <h1 class="text-center mt-10 mb-2 text-xl font-sans font-bold uppercase text-[#134087]">Log In</h1>
-        <v-form v-model="valid">
+        <v-form>
           <v-container class="space-y-6">
-            <v-text-field v-model="form.email" :rules="emailRules" class="text-blue-950" label="Email"
-              required></v-text-field>
-            <v-text-field v-model="form.password" :counter="10" class="text-blue-950" label="Password"
-              required></v-text-field>
+            <v-text-field v-model="email" :rules="emailRules" type="email" class="text-blue-950" label="Email"
+              clearable required></v-text-field>
+            <v-text-field v-model="password" :counter="10" type="password" class="text-blue-950" label="Password"
+              clearable required></v-text-field>
             <div class="flex justify-between mt-1">
-              <v-checkbox v-model="form.remember" label="Remember me" color="#1f4380"
-                class="-ml-1 text-black"></v-checkbox>
+              <v-checkbox v-model="remember" label="Remember me" color="#1f4380" class="-ml-1 text-black"></v-checkbox>
               <a href="#" class="text-[#134087] mt-5">Forgot Password?</a>
             </div>
             <div class="flex justify-center mt-0 mb-5">
-              <v-btn @click="submit" color="#fdc910" class="text-white">Submit</v-btn>
+              <v-btn @click="login" color="#fdc910" class="text-white">Submit</v-btn>
             </div>
           </v-container>
         </v-form>
