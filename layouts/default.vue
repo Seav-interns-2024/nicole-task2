@@ -10,9 +10,9 @@
           <img src="assets/props/logo.png" alt="logo" class="w-96 h-30 ml-4">
           <v-spacer></v-spacer>
           <ul class="flex gap-4 font-sans font-bold text-[#294278] text-sm uppercase mr-5">
-                    <li><NuxtLink to="/" class="p-2.5 rounded-lg bg-[#FFFFFF]">Home</NuxtLink></li>
-                    <li><NuxtLink to="/login" class="p-2.5 rounded-lg bg-[#FFFFFF]">Log In</NuxtLink></li>
-                    <li><NuxtLink to="/signup" class="p-2.5 rounded-lg bg-[#FFFFFF]">Sign Up</NuxtLink></li>
+                    <li><NuxtLink to="/" class="p-2.5 rounded-lg bg-[#FFFFFF] hover:bg-[#fdc910]">Home</NuxtLink></li>
+                    <li><NuxtLink to="/login" class="p-2.5 rounded-lg bg-[#FFFFFF] hover:bg-[#fdc910]">Log In</NuxtLink></li>
+                    <li><NuxtLink to="/signup" class="p-2.5 rounded-lg bg-[#FFFFFF] hover:bg-[#fdc910]">Sign Up</NuxtLink></li>
           </ul>
           <v-app-bar-nav-icon variant="text" class="mr-5" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
