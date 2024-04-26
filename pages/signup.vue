@@ -34,10 +34,6 @@ const nameRules = [
         if (value) return true;
         return 'Name is required.';
     },
-    (value: string) => {
-        if (/^\d*$/.test(value)) return true;
-        return 'Must be numerical characters only.';
-    }
 ];
 const suffixRules = [
     (value: string) => {
