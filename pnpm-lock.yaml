@@ -14,9 +14,6 @@ dependencies:
   nuxt:
     specifier: ^3.11.2
     version: 3.11.2(@unocss/reset@0.59.4)(floating-vue@5.2.2)(unocss@0.59.4)(vite@5.2.10)
-  nuxt-extend:
-    specifier: ^0.1.0
-    version: 0.1.0
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(vue@3.4.23)
@@ -3085,10 +3082,6 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /defu@4.0.1:
-    resolution: {integrity: sha512-lC+G0KvvWRbisQa50+iFelm3/eMmwo4IlBmfASOVlw9MZpHHyQeVsZxc5j23+TQy5ydgEoTVSrWl7ptou1kzJQ==}
-    dev: false
-
   /defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
 
@@ -3679,10 +3672,6 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       function-bind: 1.1.2
-
-  /hookable@4.4.1:
-    resolution: {integrity: sha512-KWjZM8C7IVT2qne5HTXjM6R6VnRfjfRlf/oCnHd+yFxoHO1DzOl6B9LzV/VqGQK/IrFewq+EG+ePVrE9Tpc3fg==}
-    dev: false
 
   /hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -4827,14 +4816,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.3
-    dev: false
-
-  /nuxt-extend@0.1.0:
-    resolution: {integrity: sha512-MD8IcrT7p3l434/Mbr2zIsagvOpcIWhv4B/4N3xhAyQcaZZEBW+14wTX9L+Mj0+1e5gfbhWSW8mi8cA/bZ6WhA==}
-    dependencies:
-      defu: 4.0.1
-      hookable: 4.4.1
-      jiti: 1.21.0
     dev: false
 
   /nuxt@3.11.2(@unocss/reset@0.59.4)(floating-vue@5.2.2)(unocss@0.59.4)(vite@5.2.10):

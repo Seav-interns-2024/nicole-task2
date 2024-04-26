@@ -1,20 +1,33 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { userSignUpStore } from '~/store/user.js'
 
-const valid = ref(false);
-const form = ref({
-    firstname: '',
-    middlename: '',
-    lastname: '',
-    suffix: '',
-    number: '',
-    birthdate: '',
-    age: '',
-    gender: '',
-    email: '',
-    password: '',
-    terms: false
-});
+const { addSignUp } = userSignUpStore();
+const firstname = ref('');
+const middlename = ref('');
+const lastname = ref('');
+const suffix = ref('');
+const number = ref('');
+const birthdate = ref('');
+const age = ref('');
+const gender = ref('');
+const email = ref('');
+const password = ref('');
+const terms = ref(false)
+const signup = () => {
+    addSignUp(firstname.value, middlename.value, lastname.value, suffix.value, number.value, birthdate.value, age.value, gender.value, email.value, password.value, terms.value)
+    firstname.value = ''
+    middlename.value = ''
+    lastname.value = ''
+    suffix.value = ''
+    number.value = ''
+    birthdate.value = ''
+    age.value = ''
+    gender.value = ''
+    email.value = ''
+    password.value = ''
+    terms.value = false
+}
 
 const nameRules = [
     (value: string) => {
@@ -22,11 +35,48 @@ const nameRules = [
         return 'Name is required.';
     },
     (value: string) => {
-        if (value?.length <= 10) return true;
-        return 'Name must be less than 10 characters.';
-    },
+        if (/^\d*$/.test(value)) return true;
+        return 'Must be numerical characters only.';
+    }
 ];
-
+const suffixRules = [
+    (value: string) => {
+        if (value) return true;
+        return 'Suffix is required.';
+    }
+];
+const numRules = [
+    (value: string) => {
+        if (value) return true;
+        return 'Contact Number is required.';
+    },
+    (value: string) => {
+        if (/^\d*$/.test(value)) return true;
+        return 'Must be numerical characters only.';
+    }
+];
+const birthdateRules = [
+    (value: string) => {
+        if (value) return true;
+        return 'Date of Birth is required.';
+    }
+];
+const ageRules = [
+    (value: string) => {
+        if (value) return true;
+        return 'Age is required.';
+    },
+    (value: string) => {
+        if (/^\d+$/.test(value)) return true;
+        return 'Age must be numerical characters only.';
+    }
+];
+const genderRules = [
+    (value: string) => {
+        if (value) return true;
+        return 'Gender is required.';
+    }
+];
 const emailRules = [
     (value: string) => {
         if (value) return true;
@@ -37,31 +87,22 @@ const emailRules = [
         return 'Email must be valid.';
     },
 ];
-
-const numRules = [
+const passwordRules = [
     (value: string) => {
-        if (/^\d*$/.test(value)) return true;
-        return 'Must be numerical characters only.';
+        if (value) return true;
+        return 'Password is required.';
+    },
+    (value: string) => {
+        if (value && value.length >= 6) return true;
+        return 'Password must be at least 6 characters long.';
+    },
+];
+const termsRules = [
+    (value: boolean) => {
+        if (value) return true;
+        return 'You must accept the terms and conditions.';
     }
 ];
-
-function submit() {
-    console.log('Form submitted!');
-    console.log(form.value)
-
-    //clear cell
-    form.value.firstname = ''
-    form.value.middlename = ''
-    form.value.lastname = ''
-    form.value.suffix = ''
-    form.value.number = ''
-    form.value.birthdate = ''
-    form.value.age = ''
-    form.value.gender = ''
-    form.value.email = '',
-    form.value.password = ''
-    form.value.terms = false
-}
 </script>
 
 <template>
@@ -69,71 +110,71 @@ function submit() {
         <div class="flex-1 max-w-6xl mx-auto mb-8">
             <v-card class="rounded-lg mt-8">
                 <h1 class="text-xl text-center mt-7 mb-2 font-sans font-bold uppercase text-[#134087]">Sign Up</h1>
-                <v-form v-model="valid">
+                <v-form>
                     <v-container>
                         <v-row>
                             <v-col cols="12" md="3">
-                                <v-text-field v-model="form.firstname" :rules="nameRules" class="text-blue-950"
+                                <v-text-field v-model="firstname" :rules="nameRules" class="text-blue-950"
                                     label="First name" clearable required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="3">
-                                <v-text-field v-model="form.middlename" :rules="nameRules" class="text-blue-950"
+                                <v-text-field v-model="middlename" :rules="nameRules" class="text-blue-950"
                                     label="Middle name" clearable required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="3">
-                                <v-text-field v-model="form.lastname" :rules="nameRules" class="text-blue-950"
+                                <v-text-field v-model="lastname" :rules="nameRules" class="text-blue-950"
                                     label="Last name" clearable required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="3">
-                                <v-select label="Suffix" v-model="form.suffix" class="text-blue-950" clearable
-                                    :items="['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI']"></v-select>
+                                <v-select label="Suffix" v-model="suffix" :rules="suffixRules" class="text-blue-950"
+                                    clearable :items="['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI']"></v-select>
                             </v-col>
                         </v-row>
 
                         <v-row>
                             <v-col cols="12" md="3">
-                                <v-text-field v-model="form.number" :counter="11" :rules="numRules"
-                                    class="text-blue-950" label="Contact Number" clearable required></v-text-field>
+                                <v-text-field v-model="number" :counter="11" :rules="numRules" class="text-blue-950"
+                                    label="Contact Number" clearable required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="3">
-                                <v-text-field v-model="form.birthdate" type="date" label="Date of Birth"
+                                <v-text-field v-model="birthdate" :rules="birthdateRules" type="date"
+                                    label="Date of Birth" class="text-blue-950" clearable required></v-text-field>
+                            </v-col>
+
+                            <v-col cols="12" md="3">
+                                <v-text-field v-model="age" :counter="2" label="Age" maxlength="2" :rules="ageRules"
                                     class="text-blue-950" clearable required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="3">
-                                <v-text-field v-model="form.age" :counter="2" label="Age" maxlength="2"
-                                    :rules="numRules" class="text-blue-950" clearable required></v-text-field>
-                            </v-col>
-
-                            <v-col cols="12" md="3">
-                                <v-select label="Gender" v-model="form.gender" class="text-blue-950" clearable
+                                <v-select label="Gender" v-model="gender" :rules="genderRules" class="text-blue-950" clearable
                                     :items="['Male', 'Female']"></v-select>
                             </v-col>
                         </v-row>
 
                         <v-row>
                             <v-col cols="12" md="6">
-                                <v-text-field v-model="form.email" :rules="emailRules" type="email"
-                                    class="text-blue-950" label="Email" clearable required></v-text-field>
+                                <v-text-field v-model="email" :rules="emailRules" type="email" class="text-blue-950"
+                                    label="Email" clearable required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="6">
-                                <v-text-field v-model="form.password" :counter="10" type="password"
+                                <v-text-field v-model="password" :rules="passwordRules" type="password"
                                     class="text-blue-950" label="Password" clearable required></v-text-field>
                             </v-col>
                         </v-row>
 
                         <div>
-                            <v-checkbox v-model="form.terms" label="Accept Terms and Conditions" class="text-black"
+                            <v-checkbox v-model="terms" :rules="termsRules" label="Accept Terms and Conditions" class="text-black"
                                 color="#1f4380"></v-checkbox>
                         </div>
 
                         <div class="flex justify-center -mt-5 mb-4">
-                            <v-btn @click="submit" color="#fdc910" class="text-white">Submit</v-btn>
+                            <v-btn @click="signup" color="#fdc910" class="text-white">Submit</v-btn>
                         </div>
                     </v-container>
                 </v-form>
