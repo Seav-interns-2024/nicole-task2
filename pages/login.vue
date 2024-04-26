@@ -37,7 +37,7 @@ const passwordRules = [
 
 <template>
   <div class="flex bg-gray-200">
-    <div class="w-3/5 max-w-xl mx-auto mt-7 mb-6 hover:shadow-lg">
+    <div class="w-3/5 max-w-xl mx-auto mt-7 mb-6 hover:shadow-xl">
       <v-carousel show-arrows="hover">
         <v-carousel-item>
           <div class="flex flex-col items-center">
@@ -58,7 +58,7 @@ const passwordRules = [
       </v-carousel>
     </div>
     <div class="flex-1 max-w-md mx-auto">
-      <v-card class="rounded-lg mt-16 hover:shadow-lg">
+      <v-card class="rounded-lg mt-16 hover:shadow-xl">
         <h1 class="text-center mt-10 mb-2 text-xl font-sans font-bold uppercase text-[#134087]">Log In</h1>
         <v-form ref="form">
           <v-container class="space-y-6">

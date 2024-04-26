@@ -108,7 +108,7 @@ const termsRules = [
 <template>
     <div class="flex bg-gray-200">
         <div class="flex-1 max-w-6xl mx-auto mb-8">
-            <v-card class="rounded-lg mt-8 hover:shadow-lg">
+            <v-card class="rounded-lg mt-8 hover:shadow-xl">
                 <h1 class="text-xl text-center mt-7 mb-2 font-sans font-bold uppercase text-[#134087]">Sign Up</h1>
                 <v-form>
                     <v-container>
